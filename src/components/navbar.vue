@@ -1,7 +1,7 @@
 <template>
 <div>
     <div v-if="modalVisibility">
-        <Modal2 :message="modalMessage"/>
+        <Modal2 :message="modalMessage" :detail="modalDetail"/>
     </div>
   <div class="container">
     <div class="menu_bar">
@@ -29,11 +29,13 @@ export default {
     return{
       modalVisibility: false,
       modalMessage:'',
+      modalDetail:'',
     }
   },
   methods: {
     logout(){
       this.modalMessage = 'Are You Sure?'
+      this.modalDetail = 'You will not be able to post ad!',
       this.toggleModalVisibility() 
     },
     toggleModalVisibility(){
