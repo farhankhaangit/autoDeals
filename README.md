@@ -5,7 +5,7 @@
 npm install
 
 
-"clone autoDealsBackend repository in my repositories and setup it"
+"clone and setup autoDealsBackend repository before running serve"
 ```
 
 ### Compiles and hot-reloads for development
