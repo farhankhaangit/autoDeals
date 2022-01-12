@@ -3,6 +3,9 @@
 ## Project setup
 ```
 npm install
+
+
+"clone autoDealsBackend repository in my repositories and setup it"
 ```
 
 ### Compiles and hot-reloads for development
