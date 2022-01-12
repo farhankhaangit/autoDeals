@@ -7,7 +7,7 @@
   <div class="container mb-5" v-if="this.adDetail">
       <div class="images caard">
         <h3><strong>Pictures:</strong></h3><br>
-        <div class="view">
+        <div class="view" v-if="this.images.length>0">
             <div style="height:500px; display:flex; align-items:center;">
               <img :src="`http://127.0.0.1:8000/storage/${image}`" alt="detail image" class="img-fluid">
             </div>
@@ -17,6 +17,7 @@
               <button class="btn btn-primary" @click="nextImage()">Next</button>
             </div>
         </div>
+        <p v-else>No Images in the ad</p>
       </div>
       <div class="title mt-5 mb-4">
         <h6>Posted By: {{this.adDetail.posted_by}}</h6>
