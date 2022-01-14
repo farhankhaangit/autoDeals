@@ -114,6 +114,7 @@ export default {
         color: rgb(0, 0, 0);
         padding: 10px 20px;
         margin-top: 20px;
+        background-color: rgba(255, 255, 255, 0.397);
     }
     button{
         display: block;

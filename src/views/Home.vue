@@ -7,7 +7,7 @@
     </div>
    <div class="landing text-center">
      <div>
-        <h1>buy and sale your favourite car in no time</h1>
+        <h1 style="color: rgb(255, 251, 0); font-weight: bold;">AutoDeals.com</h1>
         <h2>browse cars below to get in your budget</h2>
         <br><h3>want to sale your car? <router-link to="post-new-ad">Click Here!</router-link></h3>
      </div>
@@ -38,7 +38,8 @@
                   :location="post.location"
                   :id="post.id"
                   :price="post.price"
-                  :image_src="post.title_image"/>
+                  :image_src="post.title_image"
+                  :profile="false"/>
         </div>
      </div>
    </div>
@@ -93,6 +94,7 @@ export default {
 .landing h1, .landing h2, .landing h3{
   color: white;
   text-transform: capitalize;
+  
 }
 .landing a{
   color: rgb(255, 251, 0);
@@ -107,6 +109,7 @@ export default {
   margin-right: 20px;
   width: 22%;
   min-width: 250px;
+  background: rgba(255, 255, 255, 0.356);
 }
 .ads{
   margin: 5% 15% !important;

@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import PostNewAd from '../views/PostNewAd.vue'
 import AboutUs from '../views/AboutUs.vue'
+import Profile from '../views/Profile.vue'
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path: '/about-us',
     name: 'AboutUs',
     component: AboutUs
+  }, 
+  {
+    path: '/profile/:username',
+    name: 'Profile',
+    component: Profile
   },
 ]
 

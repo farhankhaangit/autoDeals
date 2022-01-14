@@ -4,8 +4,8 @@
         <div class="modal_cont">
             <h4>{{message}}</h4>
             <p>{{detail}}</p>
-            <button @click="accept">Yes</button>
-            <button @click="close">No</button>
+            <button @click="accept" class="btn btn-primary mx-3 fw-bold">Yes</button>
+            <button @click="close" class="btn btn-danger mx-3 fw-bold">No</button>
         </div>
       </div>
   </div>
@@ -49,14 +49,5 @@ export default {
 .modal_cont{
     width: 80%;
     margin: auto;
-}
-.modal_cont button{
-    border: none;
-    font-weight: bold;
-    color: yellow;
-    background: black;
-    border-radius: 10px;
-    padding: 10px 20px;
-    margin-right: 10px;
 }
 </style>

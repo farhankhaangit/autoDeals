@@ -188,14 +188,17 @@ export default {
     }
   },
   mounted() {
+    this.$store.commit('loadToken')
     if(!this.$store.getters.loginToken){
       this.$router.push('login');
     }
-     this.$store.commit('storeUser')
+    else {
+      this.$store.commit('storeUser')
+      this.posted_by = this.$store.getters.loggedUser.username
+    }
   },
   methods: {
     postAd(){
-      this.posted_by = this.$store.getters.loggedUser
       let formData = new FormData();
 
       if(this.title_image) formData.append('title_Image', this.title_image);
@@ -291,6 +294,7 @@ export default {
         padding: 5px 20px;
         margin-bottom: 20px;
         width: 90%;
+        background-color: rgba(255, 255, 255, 0.397);
     }
     h4{
       margin-bottom: 20px;
@@ -307,5 +311,6 @@ export default {
       padding: 20px;
       margin-bottom: 20px;
       border: none;
+      background-color: rgba(255, 255, 255, 0.397);
     }
 </style>

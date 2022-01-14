@@ -44,7 +44,7 @@ export default {
               }
               else{
                 localStorage.setItem('token', response.data.access_token)
-                localStorage.setItem('username', response.data.user.username)
+                localStorage.setItem('user', JSON.stringify(response.data.user))
                 this.$store.commit('loadToken')
                 this.$store.commit('storeUser')
                 this.$router.back()
@@ -83,6 +83,7 @@ export default {
         color: rgb(0, 0, 0);
         padding: 10px 20px;
         margin-top: 20px;
+        background-color: rgba(255, 255, 255, 0.397);
     }
     .fields button{
         display: block;

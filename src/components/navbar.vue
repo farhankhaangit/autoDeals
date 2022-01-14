@@ -8,14 +8,15 @@
       <img src="../assets/logo.png" alt="icon" class="img-fluid">
       <div>
         <router-link to="/" class="btn btn-dark">Home</router-link>
-        <router-link to="/post-new-ad" class="btn btn-dark">Post Ad</router-link>
+        <router-link to="/post-new-ad" class="btn btn-dark">Post New Ad</router-link>
         <router-link to="/about-us" class="btn btn-dark">About Us</router-link>
+        <router-link :to="`/profile/${this.username}`" class="btn btn-dark">Profile</router-link>
       </div>
       <div v-if="!token">
-        <router-link to="/login" class="btn btn-outline-primary" v-if="!token">Login/Register</router-link>
+        <router-link to="/login" class="btn btn-primary" v-if="!token">Login/Register</router-link>
       </div>
       <div v-else>
-        <button @click="logout" class="btn btn-outline-primary">Logout</button>
+        <button @click="logout" class="btn btn-primary">Logout</button>
       </div>
     </div>
   </div>
@@ -30,6 +31,7 @@ export default {
       modalVisibility: false,
       modalMessage:'',
       modalDetail:'',
+      username: null
     }
   },
   methods: {
@@ -43,8 +45,8 @@ export default {
     },
     accepted(){
       localStorage.removeItem('token');
-      localStorage.removeItem('username');
-      this.$store.commit('storeUser',null)
+      localStorage.removeItem('user');
+      this.$store.commit('deleteUser')
       window.location.reload();
     }
   },
@@ -55,6 +57,10 @@ export default {
   },
   mounted(){
     this.$store.commit('loadToken')
+    if(this.token){
+      this.$store.commit('storeUser')
+      this.username = this.$store.getters.loggedUser.username
+    }
   },
 } 
 </script>

@@ -1,5 +1,7 @@
 <template>
-  <div class="post ">
+<div>
+  <div class="post">
+      <button v-if="profile" @click="confirm">Delete?</button>
       <div class="row">
           <div class="col-xl-4 col-md-4 col-lg-4">
               <img :src="`http://127.0.0.1:8000/storage/${image_src}`" alt="post-image" class="img-fluid">
@@ -12,22 +14,31 @@
           </div>
       </div>
   </div>
+</div>
 </template>
 
 <script>
-// :src="`../assets/${image_src}`"
+import Modal from '../components/modal.vue';
+import Modal2 from '../components/modal2.vue';
 export default {
- props: ['name','transmission','engine','location','id','image_src','price']
+ props: ['name','transmission','engine','location','id','image_src','price','profile'],
+  components: {Modal,Modal2},
+    methods: {
+        confirm(){
+            this.$parent.deleteRequest(this.id)
+        },
+    },
 }
 </script>
 
 <style scoped>
     .post{
-        background: white;
+        background: rgba(255, 255, 255, 0.39);
         border-radius: 20px;
         margin-bottom: 20px;
         padding: 20px;
         max-height: 250px;
+        position: relative;
     }
     .post img{
         display: block;
@@ -44,5 +55,13 @@ export default {
     .post a{
         text-decoration: none;
         color: black;
+    }
+    .post button{
+        position: absolute;
+        top: 25px;
+        right: -100px;
+        background: none;
+        border: none;
+        font-weight: bold;
     }
 </style>

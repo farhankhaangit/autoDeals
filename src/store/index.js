@@ -5,7 +5,7 @@ export default createStore({
   state: {
     posts: null,
     loginToken: null,
-    user: null
+    loggedUserDetail: null
   },
   mutations: {
     loadAdPosts(state, posts) {
@@ -15,16 +15,24 @@ export default createStore({
       state.loginToken = localStorage.token
     },
     storeUser(state) {
-      state.user = localStorage.username
+      state.loggedUserDetail = JSON.parse(localStorage.user)
+    },
+    deleteUser(state){
+      state.loggedUserDetail = null
     }
   },
   actions: {
     async loadAdPosts ({ commit }) {
       try {
          const response = await axios.get('http://127.0.0.1:8000/api/load-ads');
-         commit('loadAdPosts', response.data)
+         if(response.data.status){
+          commit('loadAdPosts', response.data.data)
+         }
+         else{
+          commit('loadAdPosts', false)
+         }
        }
-       catch (error) {
+      catch (error) {
         commit('loadAdPosts', false)
       }
     },
@@ -39,7 +47,7 @@ export default createStore({
       return state.loginToken;
     },
     loggedUser(state){
-      return state.user;
+      return state.loggedUserDetail;
     }
   },
 })

@@ -156,12 +156,12 @@ export default {
         }
         else{
           this.modalMessage = response.data.message
-          this.modaldetail = 'fdfzgfx'
+          this.modaldetail = 'Cannot Fetch Detail'
           this.showModal()
         }
       }).catch(error => {
       this.modalMessage = 'Error'
-      this.modaldetail = 'Cannot Fetch Detail'
+      this.modaldetail = 'Something Went Wrong'
       this.showModal()
     })
   },
@@ -183,7 +183,7 @@ export default {
     float: right;
   }
   .caard{
-    background: white;
+    background: rgba(255, 255, 255, 0.301);
     border-radius: 20px;
     padding: 20px 40px;
   }
