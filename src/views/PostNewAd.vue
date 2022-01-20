@@ -180,7 +180,7 @@ export default {
       brand: null, name: null, variant: null, model: null, assembly: null, engine: null, color: null,
       fuel: null, transmission: null, milage: null, registration: null, contact: null, location: null,
       price: null, posted_by: null, title_image: null, other_images: null , discription: null, features:[],
-      
+      config: false,
       modalVisibility:false,
       modal2Visibility:false,
       modalMessage:'',
@@ -194,6 +194,8 @@ export default {
     }
     else {
       this.$store.commit('storeUser')
+      this.$store.commit('loadHeader')
+      this.config = this.$store.getters.header
       this.posted_by = this.$store.getters.loggedUser.username
     }
   },
@@ -230,7 +232,8 @@ export default {
       axios.post('http://127.0.0.1:8000/api/save-ad',
       formData,{
         headers: {
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'multipart/form-data',
+            'Authorization': this.config.headers.Authorization
         }
       }).then(response =>{
         if(response.data.status == false){
@@ -245,7 +248,7 @@ export default {
         }
       }).catch(err=>{
           this.modalMessage = 'Error Occured'
-          this.modaldetail = err.message
+          this.modaldetail = 'Something Went Wrong'
           this.showModal()
       });
     },

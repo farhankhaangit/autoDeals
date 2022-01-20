@@ -51,7 +51,7 @@ export default {
             if(!(this.password == this.confirm)){
                 this.modalMessage = 'Password Error'
                 this.modaldetail = 'Passwords does not match'
-                this.toggleModalVisibility() 
+                this.showModal() 
                 return
             }
             axios.post('http://127.0.0.1:8000/api/register',{
@@ -64,7 +64,7 @@ export default {
             }).then(response => {
                 if(response.data.status == true){
                 localStorage.setItem('token', response.data.access_token)
-                localStorage.setItem('username', response.data.user.username)
+                localStorage.setItem('user', JSON.stringify(response.data.user))
                 this.$store.commit('loadToken')
                 this.$store.commit('storeUser')
                 this.modalMessage = 'Success'

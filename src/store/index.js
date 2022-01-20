@@ -5,7 +5,8 @@ export default createStore({
   state: {
     posts: null,
     loginToken: null,
-    loggedUserDetail: null
+    loggedUserDetail: null,
+    config: null
   },
   mutations: {
     loadAdPosts(state, posts) {
@@ -19,6 +20,13 @@ export default createStore({
     },
     deleteUser(state){
       state.loggedUserDetail = null
+    },
+    loadHeader(state){
+      state.config = {
+        headers:{
+          Authorization: "Bearer " + state.loginToken,
+        }
+      }
     }
   },
   actions: {
@@ -48,6 +56,9 @@ export default createStore({
     },
     loggedUser(state){
       return state.loggedUserDetail;
+    },
+    header(state){
+      return state.config;
     }
   },
 })

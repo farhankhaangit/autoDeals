@@ -47,7 +47,8 @@ export default {
                 localStorage.setItem('user', JSON.stringify(response.data.user))
                 this.$store.commit('loadToken')
                 this.$store.commit('storeUser')
-                this.$router.back()
+                this.$store.commit('loadHeader')
+                this.generateNotification()
               }
             }).catch(err =>{
                 this.modalMessage = err.message
@@ -57,6 +58,26 @@ export default {
         },
         toggleModalVisibility(){
             this.modalVisibility =  !this.modalVisibility;
+        },
+        generateNotification(){
+            let config = this.$store.getters.header
+            let data = {
+                user_name: this.$store.getters.loggedUser.username,
+                title: "Logged in",
+                body: "you just logged in",
+                status: 0
+            }
+            axios.post('http://127.0.0.1:8000/api/store-notification', data, config ).then(response =>{
+              if(response.data.status == false){
+                console.log(response.data.message)
+              }
+              else{
+                console.log(response.data.message)
+              }
+            }).catch(err =>{
+                console.log("something went wrong generating notification")
+            });
+            this.$router.back()
         }
     },
     mounted() {
