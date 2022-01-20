@@ -2,7 +2,7 @@
  <div>
    <router-link to="post-new-ad" class="btn btn-warning postAd">Post New Ad!</router-link>
    <Navbar/>
-   <div v-if="modalVisibility">
+   <div v-if="!posts">
         <Modal :message="modalMessage" :detail="modaldetail"/>
     </div>
    <div class="landing text-center">
@@ -55,9 +55,9 @@ export default {
   components: {PostAd,Navbar,Modal},
   data(){
     return {
-        modalVisibility:false,
-        modalMessage:'',
-        modaldetail:'',
+        //modalVisibility:true,
+        modalMessage:'Server Not Responding',
+        modaldetail:'Please Come Back Later',
     }
   },
   computed: {
@@ -68,15 +68,10 @@ export default {
 
   created() {
     this.$store.dispatch('loadAdPosts');
-    if(this.$store.getters.posts == false){
-      this.toggleModalVisibility();
-    }
   },
   methods: {
     toggleModalVisibility(){
-        this.modalMessage = 'Server Not Responding'
-        this.modaldetail = 'Please Come Back Later'
-        this.modalVisibility =  true;
+        console.log("please come back later")
     }
   },
 }
