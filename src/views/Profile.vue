@@ -75,6 +75,7 @@ export default {
         user: null,
         posts: null,
         idToDelete: null,
+        nameToDelete: null,
         notifications: [],
         highlight: false,
         config: null
@@ -128,8 +129,9 @@ export default {
           this.showModal()
       })
     },
-    deleteRequest(id){
+    deleteRequest(id, adName){
       this.idToDelete = id
+      this.nameToDelete = adName
       this.confirm()
     },
     confirm(){
@@ -141,6 +143,7 @@ export default {
         this.modal2Visibility =  false
         this.modalVisibility =  false
         if(this.modalMessage == 'Success!'){
+            this.generateNotification()
             window.location.reload();
         }
     },
@@ -171,7 +174,27 @@ export default {
           console.log("error")
       })
       // e.target.classList.remove('highlight')
-    }
+    },
+    generateNotification(){
+            let config = this.$store.getters.header
+            let data = {
+                user_name: this.$store.getters.loggedUser.username,
+                title: "Ad Deleted",
+                body: "you deleted Ad for " + this.nameToDelete,
+                status: 0
+            }
+            axios.post('http://127.0.0.1:8000/api/store-notification', data, config ).then(response =>{
+              if(response.data.status == false){
+                console.log(response.data.message)
+              }
+              else{
+                console.log(response.data.message)
+              }
+            }).catch(err =>{
+                console.log("something went wrong generating notification")
+            });
+            this.$router.back()
+        }
   },
 }
 </script>

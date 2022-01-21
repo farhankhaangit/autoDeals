@@ -25,7 +25,7 @@ export default {
   components: {Modal,Modal2},
     methods: {
         confirm(){
-            this.$parent.deleteRequest(this.id)
+            this.$parent.deleteRequest(this.id, this.name)
         },
     },
 }

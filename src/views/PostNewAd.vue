@@ -262,6 +262,7 @@ export default {
         this.modalVisibility =  false
         this.modal2Visibility =  false
         if(this.modalMessage == 'Success'){
+          this.generateNotification()
           this.$router.push('/')
         }
     },
@@ -283,6 +284,26 @@ export default {
       } else {
         this.features.push(e.target.value)
       }
+    },
+    generateNotification(){
+      let config = this.$store.getters.header
+      let data = {
+          user_name: this.$store.getters.loggedUser.username,
+          title: "Ad Posted",
+          body: "you posted new Ad for " + this.brand + ' ' + this.name + ' ' + this.variant,
+          status: 0
+      }
+      axios.post('http://127.0.0.1:8000/api/store-notification', data, config ).then(response =>{
+        if(response.data.status == false){
+          console.log(response.data.message)
+        }
+        else{
+          console.log(response.data.message)
+        }
+      }).catch(err =>{
+          console.log("something went wrong generating notification")
+      });
+      return
     }
   },
 }
