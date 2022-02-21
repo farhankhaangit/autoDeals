@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="post">
-      <button v-if="profile" @click="confirm">Delete?</button>
+      <i  v-if="profile" @click="confirm" class="fas fa-trash" title="Delete this Ad"></i>
       <div class="row">
           <div class="col-xl-4 col-md-4 col-lg-4">
               <img :src="`http://127.0.0.1:8000/storage/${image_src}`" alt="post-image" class="img-fluid">
@@ -56,12 +56,12 @@ export default {
         text-decoration: none;
         color: black;
     }
-    .post button{
+    .post i{
         position: absolute;
         top: 25px;
-        right: -100px;
-        background: none;
-        border: none;
+        right: -70px;
         font-weight: bold;
+        cursor: pointer;
+        font-size: 30px;
     }
 </style>

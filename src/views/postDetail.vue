@@ -172,7 +172,7 @@ export default {
 <style scoped>
   h1{
     text-transform: capitalize;
-    font-weight: bold;
+    font-weight: 700;
   }
   .title{
     display: flex;
